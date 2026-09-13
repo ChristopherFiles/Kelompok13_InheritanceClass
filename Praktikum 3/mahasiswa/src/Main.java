@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Mahasiswa mahasiswa1 = new Mahasiswa("J0403251048", "Diaz R.H.", "diaz@gmail.com", "di isekai", "TPL", 3, 3.75);
+        Mahasiswa mahasiswa1 = new Mahasiswa("J0403251052", "Misael C.H", "sael@gmail.com", "karawang", "TPL", 3, 3.75);
         Dosen dosen1 = new Dosen("Budi", "budi@gmail.com", "di kampus", "NIDN001");
 
         System.out.println("NIM: " + mahasiswa1.getNim());
