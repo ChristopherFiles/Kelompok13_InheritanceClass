@@ -1,4 +1,4 @@
-# Perpustakaan OOP Java
+# Praktikum OOP - Inheritance (Person, Mahasiswa, Dosen)
 
 # Kelompok 13
 
@@ -14,193 +14,130 @@
 
 ## Tentang Project
 
-Program sederhana aplikasi perpustakaan yang dibuat menggunakan Java dengan konsep Object-Oriented Programming (OOP).
+Program sederhana yang dibuat menggunakan Java untuk menerapkan konsep **inheritance (pewarisan)** pada Object-Oriented Programming (OOP), melalui studi kasus data akademik: `Person`, `Mahasiswa`, dan `Dosen`.
 
-Program ini dibuat untuk menerapkan penggunaan class, object, constructor, method, encapsulation, inheritance, polymorphism, serta relasi antar class pada sebuah sistem perpustakaan sederhana.
+Mahasiswa dan Dosen sama-sama memiliki identitas dasar (nama, email, alamat), sehingga kesamaan atribut tersebut diletakkan pada superclass `Person`, sedangkan atribut serta perilaku khususnya masing-masing diletakkan pada subclass `Mahasiswa` dan `Dosen`.
 
 ## Informasi Project
 
 | Keterangan         | Detail                      |
 | ------------------ | ---------------------------- |
-| Nama Project       | Perpustakaan OOP Java       |
+| Nama Project       | Praktikum OOP - Inheritance |
 | Bahasa Pemrograman | Java                        |
-| Konsep             | Object-Oriented Programming |
+| Konsep             | Object-Oriented Programming (Inheritance) |
 | Jenis Program      | Console Application         |
 | IDE                | Visual Studio Code          |
-| JDK                | JDK 21                      |
-
-## Riwayat Update
-
-| Pertemuan | Update                                                                 |
-| --------- | ----------------------------------------------------------------------- |
-| Pertemuan 1 | Pembuatan class diagram dan implementasi awal (`Member`, `Buku`, `GenreBuku`) tanpa inheritance |
-| Pertemuan 2 | Penambahan konsep **inheritance**: superclass `Orang` (abstract) serta subclass `Member` dan `Petugas` (baru), dengan demonstrasi polymorphism pada `Main.java` |
 
 ## Class yang Digunakan
 
-| Class       | Keterangan                                              |
-| ----------- | -------------------------------------------------------- |
-| `Orang`     | Superclass abstrak, menyimpan identitas umum (id, nama, alamat) |
-| `Member`    | Subclass `Orang`; menyimpan data anggota dan buku yang sedang dipinjam |
-| `Petugas`   | Subclass `Orang`; menyimpan data staf perpustakaan dan mengelola katalog buku |
-| `Buku`      | Menyimpan data buku, genre, dan status peminjaman        |
-| `GenreBuku` | Menyimpan data genre buku                                 |
-| `Main`      | Menjalankan program dan membuat object                    |
+| Class       | Keterangan                                                  |
+| ----------- | ------------------------------------------------------------ |
+| `Person`    | Superclass; menyimpan identitas umum (nama, email, alamat)  |
+| `Mahasiswa` | Subclass `Person`; menyimpan data akademik mahasiswa         |
+| `Dosen`     | Subclass `Person`; menyimpan data dan perilaku dosen          |
+| `Main`      | Menjalankan program dan menguji object                        |
 
-## Class Orang (Superclass)
+## Class Person (Superclass)
 
-Class `Orang` merupakan superclass abstrak yang menyimpan atribut identitas umum yang dimiliki bersama oleh `Member` dan `Petugas`.
+Class `Person` menyimpan atribut identitas umum yang dimiliki bersama oleh `Mahasiswa` dan `Dosen`.
 
 ### Atribut
 
-| Atribut  | Tipe Data | Keterangan     |
-| -------- | --------- | -------------- |
-| `id`     | `int`     | ID orang       |
-| `nama`   | `String`  | Nama           |
-| `alamat` | `String`  | Alamat         |
+| Atribut  | Tipe Data | Keterangan |
+| -------- | --------- | ----------- |
+| `nama`   | `String`  | Nama        |
+| `email`  | `String`  | Email       |
+| `alamat` | `String`  | Alamat      |
 
 ### Method
 
-| Method               | Keterangan                                    |
-| --------------------- | ---------------------------------------------- |
-| `getId()`             | Mengambil id                                   |
-| `getNama()`           | Mengambil nama                                 |
-| `getAlamat()`         | Mengambil alamat                               |
-| `tampilkanData()`     | Method abstrak, wajib di-override oleh subclass |
+| Method                  | Keterangan                            |
+| ------------------------ | --------------------------------------- |
+| `getNama()`              | Mengambil nama                        |
+| `getEmail()`             | Mengambil email                       |
+| `getAlamat()`            | Mengambil alamat                      |
+| `setNama(String)`        | Mengubah nama                         |
+| `setEmail(String)`       | Mengubah email                        |
+| `tampilkanIdentitas()`   | Menampilkan nama, email, dan alamat   |
 
-## Class Member (extends Orang)
+## Class Mahasiswa (extends Person)
 
-Class `Member` digunakan untuk menyimpan data anggota perpustakaan dan mengatur proses peminjaman serta pengembalian buku. Member mewarisi atribut identitas dari `Orang`.
+Class `Mahasiswa` mewarisi `Person` dan menambahkan atribut serta perilaku akademik.
 
 ### Atribut
 
-| Atribut        | Tipe Data         | Keterangan                       |
-| -------------- | ----------------- | --------------------------------- |
-| `bukuDipinjam` | `ArrayList<Buku>` | Daftar buku yang sedang dipinjam |
+| Atribut        | Tipe Data | Keterangan             |
+| -------------- | --------- | ------------------------ |
+| `nim`          | `String`  | Nomor Induk Mahasiswa   |
+| `programStudi` | `String`  | Program studi           |
+| `semester`     | `int`     | Semester berjalan       |
+| `ipk`          | `double`  | Indeks Prestasi Kumulatif |
 
 ### Method
 
-| Method             | Keterangan                                          |
-| ------------------- | ---------------------------------------------------- |
-| `getIdMember()`     | Mengambil ID member (memanfaatkan `getId()` dari Orang) |
-| `pinjamBuku()`      | Melakukan proses peminjaman buku                     |
-| `kembalikanBuku()`  | Melakukan proses pengembalian buku                   |
-| `tampilkanData()`   | Override dari Orang; menampilkan data member dan buku yang dipinjam |
+| Method              | Keterangan                                               |
+| -------------------- | ----------------------------------------------------------- |
+| `getNim()`           | Mengambil NIM                                              |
+| `getIpk()`           | Mengambil IPK                                              |
+| `getProgramStudi()`  | Mengambil program studi                                    |
+| `getSemester()`      | Mengambil semester                                         |
+| `setIpk(double)`     | Mengubah IPK dengan validasi rentang 0.0 - 4.0             |
+| `naikSemester()`     | Menambah nilai semester sebanyak satu                      |
+| `cekPredikat()`      | Menentukan predikat kelulusan berdasarkan nilai IPK        |
 
-## Class Petugas (extends Orang)
+## Class Dosen (extends Person)
 
-Class `Petugas` merupakan subclass baru dari `Orang` yang merepresentasikan staf perpustakaan, bertugas mengelola katalog buku.
+Class `Dosen` mewarisi `Person` dan menambahkan atribut serta perilaku khusus dosen.
 
 ### Atribut
 
-| Atribut   | Tipe Data | Keterangan          |
-| --------- | --------- | -------------------- |
-| `jabatan` | `String`  | Jabatan petugas      |
+| Atribut | Tipe Data | Keterangan               |
+| ------- | --------- | -------------------------- |
+| `nidn`  | `String`  | Nomor Induk Dosen Nasional |
 
 ### Method
 
-| Method              | Keterangan                                  |
-| -------------------- | --------------------------------------------- |
-| `getJabatan()`       | Mengambil jabatan petugas                     |
-| `tambahBuku()`       | Menambahkan buku baru ke dalam katalog        |
-| `tampilkanData()`    | Override dari Orang; menampilkan data petugas |
-
-## Class Buku
-
-Class `Buku` digunakan untuk menyimpan informasi buku yang ada di perpustakaan.
-
-### Atribut
-
-| Atribut       | Tipe Data   | Keterangan   |
-| ------------- | ----------- | ------------ |
-| `idBuku`      | `int`       | ID buku      |
-| `judul`       | `String`    | Judul buku   |
-| `penulis`     | `String`    | Nama penulis |
-| `tahunTerbit` | `int`       | Tahun terbit |
-| `status`      | `String`    | Status buku  |
-| `genre`       | `GenreBuku` | Genre buku   |
-
-### Method
-
-| Method            | Keterangan                            |
-| ----------------- | -------------------------------------- |
-| `getIdBuku()`     | Mengambil ID buku                     |
-| `getJudul()`      | Mengambil judul buku                  |
-| `getPenulis()`    | Mengambil nama penulis                |
-| `getStatus()`     | Mengambil status buku                 |
-| `getGenre()`      | Mengambil genre buku                  |
-| `pinjam()`        | Mengubah status buku menjadi Dipinjam |
-| `kembalikan()`    | Mengubah status buku menjadi Tersedia |
-| `tampilkanInfo()` | Menampilkan informasi buku            |
-
-## Class GenreBuku
-
-Class `GenreBuku` digunakan untuk menyimpan informasi mengenai genre buku.
-
-### Atribut
-
-| Atribut     | Tipe Data | Keterangan      |
-| ----------- | --------- | ---------------- |
-| `idGenre`   | `int`     | ID genre         |
-| `namaGenre` | `String`  | Nama genre       |
-| `deskripsi` | `String`  | Deskripsi genre |
-
-### Method
-
-| Method             | Keterangan                  |
-| ------------------- | ----------------------------- |
-| `getIdGenre()`      | Mengambil ID genre           |
-| `getNamaGenre()`    | Mengambil nama genre         |
-| `getDeskripsi()`    | Mengambil deskripsi genre    |
-| `tampilkanGenre()`  | Menampilkan informasi genre  |
+| Method       | Keterangan                                              |
+| ------------- | ---------------------------------------------------------- |
+| `mengajar()` | Menampilkan pesan bahwa dosen sedang mengajar, memanfaatkan `getNama()` dari `Person` |
 
 ## Relasi Antar Class
 
-| Relasi                       | Jenis         | Keterangan                                     |
-| ----------------------------- | -------------- | ------------------------------------------------ |
-| `Member` → `Orang`           | Inheritance    | Member merupakan turunan dari Orang (extends)   |
-| `Petugas` → `Orang`          | Inheritance    | Petugas merupakan turunan dari Orang (extends)  |
-| `GenreBuku` — `Buku`         | Association    | Satu genre dapat digunakan oleh beberapa buku   |
-| `Member` — `Buku`            | Association    | Member dapat meminjam buku                      |
-| `Petugas` — `Buku`           | Association    | Petugas mengelola (menambahkan) data buku ke katalog |
+| Relasi                  | Jenis       | Keterangan                                   |
+| ------------------------ | ----------- | ----------------------------------------------- |
+| `Mahasiswa` → `Person`  | Inheritance | Mahasiswa merupakan turunan dari Person (extends) |
+| `Dosen` → `Person`      | Inheritance | Dosen merupakan turunan dari Person (extends)     |
 
 Relasi sederhana:
 
 ```text
-Orang (abstract)
- ├── Member
- └── Petugas
-
-GenreBuku 1 -------- * Buku
-Member    * -------- * Buku
+Person
+ ├── Mahasiswa
+ └── Dosen
 ```
 
 ## Konsep OOP yang Diterapkan
 
-| Konsep         | Penerapan                                                          |
+| Konsep         | Penerapan                                                        |
 | --------------- | -------------------------------------------------------------------- |
-| Class & Object  | `Orang`, `Member`, `Petugas`, `Buku`, `GenreBuku`                   |
-| Constructor     | Mengisi nilai awal object, termasuk pemanggilan `super()`           |
-| Encapsulation   | Atribut menggunakan `private`/`protected`                            |
-| Inheritance     | `Member` dan `Petugas` merupakan turunan dari `Orang`                |
-| Polymorphism    | Method `tampilkanData()` dipanggil melalui referensi `Orang[]`, hasil berbeda tergantung object aslinya |
-| Method Overriding | `tampilkanData()` di-override pada `Member` dan `Petugas`          |
-| ArrayList       | Menyimpan daftar buku yang dipinjam maupun katalog buku              |
+| Class & Object  | `Person`, `Mahasiswa`, `Dosen`                                        |
+| Constructor     | Mengisi nilai awal object, termasuk pemanggilan `super()`             |
+| Encapsulation   | Atribut menggunakan `private`, diakses melalui getter/setter         |
+| Inheritance     | `Mahasiswa` dan `Dosen` merupakan turunan dari `Person`               |
+| Method Overriding pattern | `Mahasiswa` menambahkan method sendiri di atas method warisan Person |
 
 ## Struktur Project
 
 ```text
-PerpustakaanOOP/
+mahasiswa/
 │
 ├── README.md
 │
 └── src/
     ├── Main.java
-    ├── Orang.java
-    ├── Member.java
-    ├── Petugas.java
-    ├── Buku.java
-    └── GenreBuku.java
+    ├── Person.java
+    ├── Mahasiswa.java
+    └── Dosen.java
 ```
 
 ## Cara Menjalankan
@@ -243,52 +180,27 @@ Class yang dijalankan adalah `Main` karena memiliki method `main()`.
 public static void main(String[] args)
 ```
 
-Class `Orang`, `Member`, `Petugas`, `Buku`, dan `GenreBuku` digunakan sebagai class pendukung.
+Class `Person`, `Mahasiswa`, dan `Dosen` digunakan sebagai class pendukung dan tidak dijalankan secara langsung.
 
 ## Contoh Output
 
 ```text
-=== DAFTAR BUKU ===
-ID Buku     : 101
-Judul       : Belajar Java OOP
-Penulis     : Andi
-Tahun       : 2025
-Genre       : Pemrograman
-Status      : Tersedia
--------------------
-...
-
-=== PENAMBAHAN BUKU OLEH PETUGAS ===
-Pak Andi menambahkan buku baru ke katalog: Filosofi Teras
-
-=== PEMINJAMAN ===
-Misael berhasil meminjam buku: Belajar Java OOP
-Misael berhasil meminjam buku: Senja di Kota
-
-=== MEMBER LAIN ===
-Buku sedang dipinjam.
-
-=== PENGEMBALIAN ===
-Misael mengembalikan buku: Belajar Java OOP
-Azis berhasil meminjam buku: Belajar Java OOP
-
-=== DEMONSTRASI POLYMORPHISM (Orang) ===
-
-=== DATA MEMBER ===
-ID Member : 1
-Nama      : Misael
-Alamat    : Karawang
-...
-
-=== DATA PETUGAS ===
-ID Petugas : 1
-Nama       : Pak Andi
-Alamat     : Bogor
-Jabatan    : Staff Perpustakaan
+NIM: J0403251048
+Nama: Diaz R.H.
+Program Studi: TPL
+Semester: 3
+IPK: 3.75
+Predikat: Cumlaude
+----- Setelah Update -----
+Semester: 4
+NIM: J0403251048
+Predikat: Cumlaude
+----- Dosen -----
+Budi sedang mengajar
 ```
 
 ## Kesimpulan
 
-Program ini merupakan penerapan konsep OOP pada sistem perpustakaan sederhana, mencakup class dan object, constructor, encapsulation, **inheritance**, dan **polymorphism**. Class `Orang` sebagai superclass abstrak menyederhanakan struktur `Member` dan `Petugas` yang memiliki identitas serupa, sementara `Buku` dan `GenreBuku` tetap berdiri sendiri dengan relasi association.
+Program ini menerapkan konsep **inheritance** dengan menjadikan `Person` sebagai superclass yang menyimpan atribut dan method umum, sementara `Mahasiswa` dan `Dosen` sebagai subclass yang mewarisi `Person` sekaligus menambahkan atribut dan perilaku khususnya masing-masing. Penggunaan `super()` pada constructor subclass memastikan atribut yang diwariskan terisi dengan benar tanpa duplikasi kode.
 
-Program masih berbasis console dan dapat dikembangkan lagi dengan database, menu interaktif, pencarian buku, riwayat peminjaman, class `Peminjaman` tersendiri, serta fitur lainnya.
+Program masih dapat dikembangkan lebih lanjut, misalnya dengan menambahkan validasi input pada setter `Person`, atau menambahkan subclass `Person` lain seperti `Staff` atau `Alumni`.
