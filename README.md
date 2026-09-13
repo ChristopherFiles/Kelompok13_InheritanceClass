@@ -186,14 +186,14 @@ Class `Person`, `Mahasiswa`, dan `Dosen` digunakan sebagai class pendukung dan t
 
 ```text
 NIM: J0403251048
-Nama: Diaz R.H.
+Nama: Misael C.H
 Program Studi: TPL
 Semester: 3
 IPK: 3.75
 Predikat: Cumlaude
 ----- Setelah Update -----
 Semester: 4
-NIM: J0403251048
+NIM: J0403251052
 Predikat: Cumlaude
 ----- Dosen -----
 Budi sedang mengajar
